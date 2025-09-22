@@ -1,0 +1,1 @@
+# Időjárás előrejelzés frontend

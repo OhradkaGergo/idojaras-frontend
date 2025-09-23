@@ -1,9 +1,4 @@
 function alertMessage(message, type) {
-    // megkapja a messaget meg a bootstrap typeot
-    // csinál elementet, abba belerakja a messaget meg a typeot
-    // belerakja az 'alertPh'-ba (alertPlaceholder, csak rövidítve)
-    // vár 3 msásodpercet, eltűnik
-
     let alertPh = document.querySelector('#alertPh')
     let alert = document.createElement('div')
 

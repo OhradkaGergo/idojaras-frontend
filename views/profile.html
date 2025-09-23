@@ -1,2 +1,37 @@
-<h3>Profil</h3>
+<h2>Profil</h2>
 <div id="alertPh"></div>
+
+<!-- TODO:profilkezelési oldal -->
+
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <h3 class="mb-3">Adatok</h3>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="nameInput" placeholder="">
+            <label for="nameInput" class="form-label">Név:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="emailaddInput" aria-describedby="emailHelp" placeholder="">
+            <label for="emailaddInput" class="form-label">Email cím:</label> 
+        </div>
+        <button class="btn btn-primary mb-3 mt-2" id="modDataBtn" onclick="updateProfile()">Módosítás</button>
+    </div>
+
+    <div class="col-12 col-lg-6">
+        <h3 class="mb-3">Jelszó módosítása</h3>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="passwordInputRN" placeholder="">
+            <label for="passwordInputRN" class="form-label">Mostani jelszó:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="passwordInputNew" placeholder="">
+            <label for="passwordInputNew" class="form-label">Új jelszó:</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="passwordInputNewAgain" placeholder="">
+            <label for="passwordInputNewAgain" class="form-label">Új jelszó újra:</label>
+        </div>
+
+        <button class="btn btn-primary mb-3 mt-2" id="modPassBtn" onclick="updatePassword()">Módosítás</button>
+    </div>
+</div>

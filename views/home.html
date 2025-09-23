@@ -2,10 +2,34 @@
 
 <!-- TODO:ami itt van lent: ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
 
-<!-- dátum, min hőmérséklet, max hőmérséklet, csak a jövőbe lehet, és időjárás: -->
-    <!-- (napsütés), (felhőzet), (eső > zápor > zivatar), (szél), -->
-    <!-- (hó > jégeső), (párolgás > köd) -->
+<!-- dátum, min hőmérséklet, max hőmérséklet, csak a jövőbe lehet, és időjárás[✔✔✔]:{
+    (napsütés), (felhőzet), (eső > zápor > zivatar), (szél),
+    (hó > jégeső), (párolgás > köd)}
+-->
 
 
 <h2>Főoldal</h2>
 <div id="alertPh"></div>
+<br>
+
+<div class="input-group mb-3">
+    <label class="input-group-text" for="idojarasSelect">Válassz időjárást!</label>
+    <select class="form-select" id="idojarasSelect">
+        <option selected>Választás...</option>
+        <option value="napsutes">Napsütés</option>
+
+        <option value="felhozet">Felhőzet</option>
+
+        <option value="eso">Eső</option>
+        <option value="zapor">Zápor</option>
+        <option value="zivatar">Zivatar</option>
+
+        <option value="szel">Szél</option>
+
+        <option value="ho">Hó</option>
+        <option value="jegeso">Jégeső</option>
+
+        <option value="parolgas">Párolgás</option>
+        <option value="kod">Köd</option>
+    </select>
+  </div>

@@ -2,7 +2,7 @@ const Author = "Ohradka Gergő"
 const Title = "Időjárás előrejelzés"
 const Company = "Türr István Technikum"
 
-const ServerURL = "http://localhost:3000" //TODO: render legyen meg
+const ServerURL = "http://localhost:3000"
 
 let author = document.querySelector('#Author')
 let title = document.querySelector('#Title')
@@ -14,7 +14,7 @@ company.innerHTML = Company
 
 let main = document.querySelector('main')
 
-// dark mode és light mode váltó kezd
+
 let theme = 'light'
 
 let lightmodeBtn = document.querySelector('#lightmodeBtn')
@@ -57,16 +57,13 @@ function loadTheme() {
 }
 
 loadTheme()
-// dark mode és light mode váltó vég
 
-// render kezd
+
 async function render(view) {
     main.innerHTML = await (await fetch(`views/${view}.html`)).text()
-
+    // TODO: render
 }
-// render vég
 
-// logged user kezd
 let beforeMenu = document.querySelector('#beforeMenu')
 let afterMenu = document.querySelector('#afterMenu')
 
@@ -87,7 +84,7 @@ async function getLoggedUser() {
 }
 
 getLoggedUser()
-//logged user vég
+
 
 async function loadComponent(page) {
     main.innerHTML = await (await fetch(`views/${page}.html`)).text()

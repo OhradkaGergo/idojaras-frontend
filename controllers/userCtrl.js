@@ -1,8 +1,6 @@
 const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// TODO: itt igazából még minden is kell
-
 async function registration() {
     let nameInput = document.querySelector('#nameInput')
     let emailaddInput = document.querySelector('#emailaddInput')
@@ -83,12 +81,10 @@ async function login() {
         
         if (user.id) {
             loggedUser = user
-            console.log("halo")
         }
 
         if (!loggedUser) {
             alertMessage("Hibás bejelentkezési adatok!", 'danger')
-            console.log("th")
             return
         }
 
@@ -110,15 +106,13 @@ async function logout() {
 }
 
 function getProfile() {
-    let emailaddInput = document.querySelector('#emailaddInput').value
-    let nameInput = document.querySelector('#nameInput').value
+    let emailaddInput = document.querySelector('#emailaddInput')
+    let nameInput = document.querySelector('#nameInput')
     let currentUser = JSON.parse(sessionStorage.getItem('loggedUser'))
 
-    emailaddInput = currentUser.email
-    nameInput = currentUser.name
+    emailaddInput.value = currentUser.email
+    nameInput.value = currentUser.name
 }
-
-// TODO: update profile ✔✔✔✔ | update password 
 
 async function updateProfile() {
     let emailaddInput = document.querySelector('#emailaddInput').value
@@ -160,6 +154,56 @@ async function updateProfile() {
     }
 }
 
-async function updateProfile() {
-    // update profile ide
+async function updatePassword() {
+    let passwordInputRN = document.querySelector('#passwordInputRN')
+    let passwordInputNew = document.querySelector('#passwordInputNew')
+    let passwordInputNewAgain = document.querySelector('#passwordInputNewAgain')
+
+    loggedUser = JSON.parse(sessionStorage.getItem('loggedUser'))
+
+    if (passwordInputRN.value == "" || passwordInputNew.value == "" || passwordInputNewAgain.value == "") {
+        alertMessage("Nem adtál meg minden adatot!", 'danger')
+        return
+    }
+
+    if (passwordInputRN.value != loggedUser.password) {
+        alertMessage("Hibás a régi jelszó!", 'danger')
+        return
+    }
+
+    if (passwordInputNew.value != passwordInputNewAgain.value) {
+        alertMessage("Nem egyező a két új jelszó!", 'danger')
+    }
+
+    if (!passwordRegExp.test(passwordInputNew.value)) {
+        alertMessage("Az új jelszó nem biztonságos", 'danger')
+        return
+    }
+
+    if (passwordInputRN.value == passwordInputNew.value) {
+        alertMessage("A régi és az új jelszó nem lehet ugyan az!", 'danger')
+        return
+    }
+
+    try {
+        const res = await fetch(`${ServerURL}/users/passmod`, {
+            method: "PATCH",
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify(
+                {
+                    id: loggedUser.id,
+                    passwordNew: passwordInputNew,value
+                }
+            )
+        })
+        let alertStatus = res.status == 200 ? 'success' : 'danger'
+        const data = await res.json()
+
+        if (res.status == 200) {
+            sessionStorage.setItem('loggedUser', JSON.stringify({id:loggedUser.id, name: loggedUser.name, email: loggedUser.email, password: passwordInputNew.value}))
+        }
+        alertMessage(`${data.msg}`, alertStatus)
+    } catch (error) {
+        alertMessage(`Hiba történt a jelszómódosítás során! ${error}`, 'danger')
+    }
 }

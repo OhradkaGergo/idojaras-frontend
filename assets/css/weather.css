@@ -23,8 +23,22 @@ main {
     margin-top: 2%;
 }
 
-/*
-.addBtn {
-    width: 90%;
+.navbar {
+    border-radius: 10px;
 }
+
+/*
+TODO: containernek egy szolid háttér, mögötte lévő bodynak az alábbi:
+background: #0095ff;
+background: linear-gradient(90deg, rgba(0, 149, 255, 1) 0%, rgba(255, 132, 0, 1) 100%);
+
+a container háttere színt vált theme alapján
+
+VAGY
+ugyan ez, de
+light theme:
+linear-gradient(90deg, #efd5ff 0%, #515ada 100%)
+
+dark theme:
+linear-gradient(90deg, #4b6cb7 0%, #182848 100%)
 */

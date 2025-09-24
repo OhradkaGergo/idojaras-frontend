@@ -62,6 +62,15 @@ loadTheme()
 async function render(view) {
     main.innerHTML = await (await fetch(`views/${view}.html`)).text()
     // TODO: render
+
+    switch (view) {
+        case "home":
+            setDate()
+            //await getWeather()
+            break;
+        default:
+            break;
+    }
 }
 
 let beforeMenu = document.querySelector('#beforeMenu')

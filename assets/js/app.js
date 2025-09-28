@@ -66,7 +66,8 @@ async function render(view) {
     switch (view) {
         case "home":
             setDate()
-            //await getWeather()
+            await getWeather()
+            renderWeather()
             break;
         default:
             break;

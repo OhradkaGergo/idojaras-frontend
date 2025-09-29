@@ -12,8 +12,9 @@ author.innerHTML = Author
 title.innerHTML = Title
 company.innerHTML = Company
 
+let body = document.body
+let container = document.querySelector('.container')
 let main = document.querySelector('main')
-
 
 let theme = 'light'
 
@@ -34,9 +35,21 @@ function themeButton(theme) {
     if (theme == 'light') {
         lightmodeBtn.classList.add('hide')
         darkmodeBtn.classList.remove('hide')
+
+        body.classList.add('lightThemeBgc')
+        body.classList.remove('darkThemeBgc')
+
+        container.classList.add('lightThemeContainer')
+        container.classList.remove('darkThemeContainer')
     } else {
         darkmodeBtn.classList.add('hide')
         lightmodeBtn.classList.remove('hide')
+
+        body.classList.add('darkThemeBgc')
+        body.classList.remove('lightThemeBgc')
+
+        container.classList.add('darkThemeContainer')
+        container.classList.remove('lightThemeContainer')
     }
 }
 
@@ -58,17 +71,22 @@ function loadTheme() {
 
 loadTheme()
 
-
 async function render(view) {
     main.innerHTML = await (await fetch(`views/${view}.html`)).text()
     // TODO: render
 
     switch (view) {
-        case "home":
+        case "home": {
             setDate()
             await getWeather()
             renderWeather()
             break;
+        }
+        case "statistics": {
+            await getChartData()
+            initChart()
+            break;
+        }
         default:
             break;
     }
@@ -94,7 +112,6 @@ async function getLoggedUser() {
 }
 
 getLoggedUser()
-
 
 async function loadComponent(page) {
     main.innerHTML = await (await fetch(`views/${page}.html`)).text()

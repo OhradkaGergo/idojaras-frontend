@@ -1,14 +1,5 @@
-<!-- alap oldal ide, ahol lehetséges lesz majd az adatrögzítés -->
-
-<!-- TODO:ami itt van lent: ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇ -->
-
-<!-- dátum, min hőmérséklet, max hőmérséklet, csak a jövőbe lehet, és időjárás[✔✔✔]:{
-    (napsütés), (felhőzet), (eső > zápor > zivatar), (szél),
-    (hó > jégeső), (párolgás > köd)}
--->
-
-
-<h2>Főoldal</h2>
+<h2 class="viewTitle">Főoldal</h2>
+<hr>
 <div id="alertPh"></div>
 <div class="row">
     <div class="form-floating mb-3 col-12 col-lg-4">
@@ -34,33 +25,38 @@
 </div>
 
 <div class="row g-0 text-end">
-    <div class="col-sm-6 col-md-11">
+    <div>
         <div class="input-group">
             <label class="input-group-text" for="idojarasSelect">Válassz időjárást!</label>
             <select class="form-select" id="idojarasSelect">
                 <option selected>Választás...</option>
-                <option value="napsutes">Napsütés</option>
+                <option value="Napsütés">Napsütés</option>
         
-                <option value="felhozet">Felhőzet</option>
+                <option value="Felhőzet">Felhőzet</option>
         
-                <option value="eso">Eső</option>
-                <option value="zapor">Zápor</option>
-                <option value="zivatar">Zivatar</option>
+                <option value="Eső">Eső</option>
+                <option value="Zápor">Zápor</option>
+                <option value="Zivatar">Zivatar</option>
         
-                <option value="szel">Szél</option>
+                <option value="Szél">Szél</option>
         
-                <option value="ho">Hó</option>
-                <option value="jegeso">Jégeső</option>
+                <option value="Hó">Hó</option>
+                <option value="Jégeső">Jégeső</option>
         
-                <option value="parolgas">Párolgás</option>
-                <option value="kod">Köd</option>
+                <option value="Párolgás">Párolgás</option>
+                <option value="Köd">Köd</option>
             </select>
         </div>
     </div>
+</div>
 
-    <div class="col-6 col-md-1">
-        <button class="btn btn-primary addBtn" onclick="addWeather()" id="addBtn">Hozzáadás</button>
-    </div>
+<br>
+
+<div class="col">
+    <button class="btn btn-primary" onclick="addWeather()" id="addBtn">Hozzáadás</button>
+    <button class="btn btn-warning hide" onclick="updateWeather()" id="updateBtn">Frissítés</button>
+    <button class="btn btn-danger hide" onclick="deleteWeather()" id="deleteBtn">Törlés</button>
+    <button class="btn btn-secondary hide" onclick="cancel()" id="cancelBtn">Mégsem</button>
 </div>
 
 <br>

@@ -24,11 +24,13 @@ let darkmodeBtn = document.querySelector('#darkmodeBtn')
 lightmodeBtn.addEventListener('click', () => {
     setTheme('light')
     saveTheme('light')
+    RenderCanvas()
 })
 
 darkmodeBtn.addEventListener('click', () => {
     setTheme('dark')
     saveTheme('dark')
+    RenderCanvas()
 })
 
 function themeButton(theme) {

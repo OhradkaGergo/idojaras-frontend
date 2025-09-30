@@ -61,9 +61,10 @@ async function RenderCanvas() {
             var img = null
 
             if (weatherType == "Napsütés") {
-                if (selectedTheme == "light") {
+                if (selectedTheme == "light2") {
                     img = $("<img>")
                     .attr("src", "./img/napsutes.svg")
+                    .css("filter", "invert(0)")
                 } else {
                     img = $("<img>")
                     .attr("src", "./img/napsutes.svg")
@@ -71,30 +72,103 @@ async function RenderCanvas() {
                 }
             }
             else if (weatherType == "Felhőzet") {
-                img = $("<img>").attr("src", "./img/felhozet.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/felhozet.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/felhozet.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Eső") {
-                img = $("<img>").attr("src", "./img/eso.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/eso.svg")
+                    .css("filter", "invert(0)")
+                    
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/eso.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Zápor") {
-                img = $("<img>").attr("src", "./img/zapor.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/zapor.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/zapor.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Zivatar") {
-                img = $("<img>").attr("src", "./img/zivatar.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/zivatar.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/zivatar.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Szél") {
-                img = $("<img>").attr("src", "./img/szel.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/szel.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/szel.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Hó") {
-                img = $("<img>").attr("src", "./img/ho.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/ho.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/ho.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Jégeső") {
-                img = $("<img>").attr("src", "./img/jegeso.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/jegeso.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/jegeso.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Párolgás") {
-                img = $("<img>").attr("src", "./img/parolgas.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/parolgas.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/parolgas.svg")
+                    .css("filter", "invert(1)")
+                }
             }else if (weatherType == "Köd") {
-                img = $("<img>").attr("src", "./img/köd.svg")
+                if (selectedTheme == "light2") {
+                    img = $("<img>")
+                    .attr("src", "./img/kod.svg")
+                    .css("filter", "invert(0)")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/kod.svg")
+                    .css("filter", "invert(1)")
+                }
             }
 
             if (img) {

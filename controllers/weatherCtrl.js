@@ -157,14 +157,15 @@ function editW(index) {
     let minTemp = document.querySelector('#minTemp')
     let maxTemp = document.querySelector('#maxTemp')
     let idojarasSelect = document.querySelector('#idojarasSelect')
-    let idojarasSelectValue = idojarasSelect.options[idojarasSelect.selectedIndex].value
 
     modeToggle(true)
 
     date.value = weather[index].date
     minTemp.value = weather[index].minTemp
     maxTemp.value = weather[index].maxTemp
-    idojarasSelectValue.value = weather[index].idojarasSelectValue
+    idojarasSelect.value = weather[index].weatherType
+
+    selectedWeather = weather[index]
 }
 
 
@@ -199,11 +200,80 @@ function cancel() {
     date.value = null
     minTemp.value = null
     maxTemp.value = null
-    idojarasSelectValue = "Választás..."
+    idojarasSelect.value = "Választás..."
 }
 
 async function updateWeather() {
-    
+    let date = document.querySelector('#dateInput').value
+    let minTemp = document.querySelector('#minTemp').value
+    let maxTemp = document.querySelector('#maxTemp').value
+    let idojarasSelect = document.querySelector('#idojarasSelect')
+    let idojarasSelectValue = idojarasSelect.options[idojarasSelect.selectedIndex].value
+
+    if (selectedWeather.date == date) {
+        try {
+            let res = await fetch(`${ServerURL}/weather/${selectedWeather.id}`, {
+                method: "PATCH",
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({
+                    userId: loggedUser.id,
+                    date: date,
+                    minTemp: minTemp,
+                    maxTemp: maxTemp,
+                    weatherType: idojarasSelectValue
+                })
+            })
+
+            let data = await res.json()
+
+            if (res.status == 200) {
+                alertMessage(`${data.msg}`, 'success')
+                await getWeather()
+                renderWeather()
+            } else {
+                alertMessage(`${data.msg}`, 'danger')
+            }
+        } catch (error) {
+            console.log(error)
+            alertMessage("Hiba történt az adatok frissítése során!", 'danger')
+        }
+    } else {
+        let idx = weather.findIndex(w => w.date == date && w.uId == loggedUser.id)
+        
+        if (idx == -1) {
+            try {
+                let res = await fetch(`${ServerURL}/weather`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type':'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: loggedUser.id,
+                        date: date,
+                        minTemp: minTemp,
+                        maxTemp: maxTemp,
+                        weatherType: idojarasSelectValue
+                    })
+                });
+
+                let data = await res.json()
+
+                if (res.status == 200) {
+                    alertMessage(`${data.msg}`, 'success')
+                    await getWeather()
+                    renderWeather()
+                } else {
+                    alertMessage(`${data.msg}`, 'danger')
+                }
+
+            } catch (error) {
+                console.log(error)
+                alertMessage("Hiba történt az adatok mentése során!", 'danger')
+            }
+        }
+    }
 }
 
 async function deleteW(index) {
@@ -231,6 +301,6 @@ async function deleteW(index) {
 }
 
 async function deleteWeather() {
-    let idx = weather.findIndex(weather => weather.id == selectedWeather.id)
+    let idx = weather.findIndex(w => w.id == selectedWeather.id)
     await deleteW(idx)
 }

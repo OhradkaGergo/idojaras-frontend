@@ -73,7 +73,6 @@ loadTheme()
 
 async function render(view) {
     main.innerHTML = await (await fetch(`views/${view}.html`)).text()
-    // TODO: render
 
     switch (view) {
         case "home": {
@@ -82,13 +81,18 @@ async function render(view) {
             renderWeather()
             break;
         }
-        case "statistics": {
-            await getChartData()
-            initChart()
+        case "calendar": {
+            await getCalendar()
+            initCalendar()
             break;
         }
-        default:
+        case "statistics": {
+            await RenderCanvas()
             break;
+        }
+        default: {
+            break;
+        }
     }
 }
 

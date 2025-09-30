@@ -25,7 +25,9 @@ async function RenderCanvas() {
         }
     })
  
+    let selectedTheme = isDarkMode() ? "dark2" : "light2";
     var chart = new CanvasJS.Chart("chartContainer", {
+        theme: selectedTheme,
         title:{
             text: "Időjárás előrejelzés"              
         },
@@ -59,9 +61,14 @@ async function RenderCanvas() {
             var img = null
 
             if (weatherType == "Napsütés") {
-                img = $("<img>")
-                .attr("src", "./img/napsutes.svg")
-                // ha darkmode, akkor: .css("filter", "invert(1)")
+                if (selectedTheme == "light") {
+                    img = $("<img>")
+                    .attr("src", "./img/napsutes.svg")
+                } else {
+                    img = $("<img>")
+                    .attr("src", "./img/napsutes.svg")
+                    .css("filter", "invert(1)")
+                }
             }
             else if (weatherType == "Felhőzet") {
                 img = $("<img>").attr("src", "./img/felhozet.svg")
@@ -132,4 +139,9 @@ async function RenderCanvas() {
             return e.dataPoint.y[e.index] + "°"
         }
     }
+}
+
+function isDarkMode() {
+    const theme = document.documentElement.getAttribute('data-bs-theme') || 'light';
+    return theme === 'dark';
 }
